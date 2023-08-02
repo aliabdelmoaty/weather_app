@@ -20,20 +20,44 @@ class HomeScreenBody extends StatelessWidget {
         if (state is WeatherDataSuccess) {
           return Column(
             children: [
-              const CustomImage(assetImage: Assets.weatherSplash, height: 160),
+              Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                      color: Colors.white,
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.search_sharp,
+                        size: 40,
+                      ))),
+              CustomImage(
+                  assetImage: Assets.weatherSplash,
+                  height: MediaQuery.sizeOf(context).height * .26),
               Text(
                 "${weatherData.weatherModel?.current?.tempC}°",
                 style: const TextStyle(
-                    fontSize: 64,
+                    fontSize: 50,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
-              Text(
-                "${weatherData.weatherModel?.current?.condition?.text}",
-                style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "${weatherData.weatherModel?.current?.condition?.text}",
+                    style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white),
+                  ),
+                  Text(
+                    " (${weatherData.weatherModel?.location?.name})",
+                    style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white54),
+                  ),
+                ],
               ),
               Text(
                 "Max: ${weatherData.weatherModel?.forecast?.forecastday?[0].day?.maxtempC}°     Min: ${weatherData.weatherModel?.forecast?.forecastday?[0].day?.mintempC}°",
@@ -46,11 +70,13 @@ class HomeScreenBody extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              const CustomImage(assetImage: Assets.house, height: 130),
+              CustomImage(
+                  assetImage: Assets.house,
+                  height: MediaQuery.sizeOf(context).height * .13),
               Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 5, horizontal: 23),
-                height: MediaQuery.sizeOf(context).height * .28,
+                height: MediaQuery.sizeOf(context).height * .25,
                 decoration: BoxDecoration(
                     color: primaryColor,
                     borderRadius: BorderRadius.circular(30)),

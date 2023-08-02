@@ -18,7 +18,11 @@ class SplashBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: BlocConsumer<WeatherDataCubit, WeatherDataState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is WeatherDataSuccess){
+            GoRouter.of(context).push(AppRouter.homeScreen);
+        }
+      },
       builder: (context, state) {
         return Column(
           children: [
@@ -58,17 +62,22 @@ class SplashBody extends StatelessWidget {
                         borderRadius: BorderRadius.circular(50)),
                     child: MaterialButton(
                       onPressed: () {
-                        getLocation().then((value) {
-                          LocationData? location = value;
-                          getAddress(location?.latitude, location?.longitude)
-                              .then((value) {
-                            currentLocation = location;
-                            WeatherDataCubit.get(context)
-                                .getData(endpoint: value);
-                          }).then((value) {
-                            GoRouter.of(context).push(AppRouter.homeScreen);
-                          });
-                        });
+                         WeatherDataCubit.get(context)
+                                .getData();
+                        //   }).then((value) {
+                            
+                        //   });
+                        // getLocation().then((value) {
+                        //   LocationData? location = value;
+                        //   getAddress(location?.latitude, location?.longitude)
+                        //       .then((value) {
+                        //     currentLocation = location;
+                        //     WeatherDataCubit.get(context)
+                        //         .getData(endpoint: value);
+                        //   }).then((value) {
+                        //     
+                        //   });
+                        // });
                       },
                       child: const Text(
                         "Get Start",
