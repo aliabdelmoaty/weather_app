@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:weather_app/core/app_router.dart';
 import 'package:weather_app/core/assets.dart';
 import 'package:weather_app/core/widgets/custom_image.dart';
 import 'package:weather_app/features/home/data/cubit/weather_data_cubit.dart';
@@ -25,7 +27,9 @@ class HomeScreenBody extends StatelessWidget {
                   child: IconButton(
                       color: Colors.white,
                       padding: const EdgeInsets.symmetric(horizontal: 30),
-                      onPressed: () {},
+                      onPressed: () {
+                        GoRouter.of(context).push(AppRouter.searchScreen);
+                      },
                       icon: const Icon(
                         Icons.search_sharp,
                         size: 40,
