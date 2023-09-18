@@ -20,7 +20,6 @@ class WeatherDataCubit extends Cubit<WeatherDataState> {
         currentLocation = location;
         await DioHelper().getData(endpoint: value).then((value) {
           weatherModel = WeatherModel.fromMap(value);
-          print(" dada is :$value");
         });
       });
       emit(WeatherDataSuccess());
@@ -28,11 +27,11 @@ class WeatherDataCubit extends Cubit<WeatherDataState> {
       emit(WeatherDataError(e: e));
     });
   }
+    Location location = new Location();
 
   Future<LocationData?> getLocation() async {
-    Location location = new Location();
     LocationData _locationData;
-    location.enableBackgroundMode(enable: true);
+    // location.enableBackgroundMode(enable: enableBackgroundMode());
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
 
@@ -56,7 +55,25 @@ class WeatherDataCubit extends Cubit<WeatherDataState> {
 
     return _locationData;
   }
-
+Future<bool> enableBackgroundMode() async {
+    bool _bgModeEnabled = await location.isBackgroundModeEnabled();
+    if (_bgModeEnabled) {
+      return true;
+    } else {
+      try {
+        await location.enableBackgroundMode();
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+      try {
+        _bgModeEnabled = await location.enableBackgroundMode();
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+      print(_bgModeEnabled); //True!
+      return _bgModeEnabled;
+    }
+  }
   Future<String> getAddress(double? lat, double? lang) async {
     if (lat == null || lang == null) return "";
     GeoCode geoCode = GeoCode();

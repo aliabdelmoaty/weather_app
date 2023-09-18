@@ -16,7 +16,6 @@ class SearchWeatherCubit extends Cubit<SearchWeatherState> {
     await DioHelper().getData(endpoint: city).then((value) {
       weatherModel = WeatherModel.fromMap(value);
       emit(SearchWeatherSuccess(weatherModel:WeatherModel.fromMap(value) ));
-      print(" dada is :$value");
     }).catchError((e) {
       emit(SearchWeatherError(e: e.toString()));
     });

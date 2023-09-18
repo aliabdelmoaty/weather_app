@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weather_app/core/app_router.dart';
 import 'package:weather_app/core/assets.dart';
@@ -19,24 +20,24 @@ class ShowSearchDataBody extends StatelessWidget {
           children: [
             IconButton(
                 color: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 12),
+                padding:  EdgeInsets.symmetric(horizontal: 12.w),
                 onPressed: () {
-                  GoRouter.of(context).push(AppRouter.homeScreen);
+                  GoRouter.of(context).pushReplacement(AppRouter.homeScreen);
                 },
-                icon: const Icon(
+                icon:  Icon(
                   Icons.home_rounded,
-                  size: 40,
+                  size: 40.h,
                 )),
             const Spacer(),
             IconButton(
                 color: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+                padding:  EdgeInsets.symmetric(horizontal: 30.w),
                 onPressed: () {
                   GoRouter.of(context).push(AppRouter.searchScreen);
                 },
-                icon: const Icon(
+                icon:  Icon(
                   Icons.search_sharp,
-                  size: 40,
+                  size: 40.h,
                 )),
           ],
         ),
@@ -45,23 +46,23 @@ class ShowSearchDataBody extends StatelessWidget {
             height: MediaQuery.sizeOf(context).height * .26),
         Text(
           "${weatherModel.current?.tempC}°",
-          style: const TextStyle(
-              fontSize: 50, fontWeight: FontWeight.bold, color: Colors.white),
+          style:  TextStyle(
+              fontSize: 50.sp, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               "${weatherModel.current?.condition?.text}",
-              style: const TextStyle(
-                  fontSize: 24,
+              style:  TextStyle(
+                  fontSize: 24.sp,
                   fontWeight: FontWeight.w400,
                   color: Colors.white),
             ),
             Text(
               " (${weatherModel.location?.name})",
-              style: const TextStyle(
-                  fontSize: 15,
+              style:  TextStyle(
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w400,
                   color: Colors.white54),
             ),
@@ -69,20 +70,20 @@ class ShowSearchDataBody extends StatelessWidget {
         ),
         Text(
           "Max: ${weatherModel.forecast?.forecastday?[0].day?.maxtempC}°     Min: ${weatherModel.forecast?.forecastday?[0].day?.mintempC}°",
-          style: const TextStyle(
-              fontSize: 24,
-              height: 1.5,
+          style:  TextStyle(
+              fontSize: 24.sp,
+              height: 1.5.h,
               fontWeight: FontWeight.w400,
               color: Colors.white),
         ),
-        const SizedBox(
-          height: 30,
+         SizedBox(
+          height: 30.h,
         ),
         CustomImage(
             assetImage: Assets.house,
             height: MediaQuery.sizeOf(context).height * .13),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 23),
+          padding:  EdgeInsets.symmetric(vertical: 5.h, horizontal: 23.w),
           height: MediaQuery.sizeOf(context).height * .25,
           decoration: BoxDecoration(
               color: primaryColor, borderRadius: BorderRadius.circular(30)),
@@ -90,17 +91,17 @@ class ShowSearchDataBody extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Text(
+                   Text(
                     "today",
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.w600,
                         color: Colors.white),
                   ),
                   const Spacer(),
                   Text('${weatherModel.location?.localtime}',
-                      style: const TextStyle(
-                          fontSize: 20,
+                      style:  TextStyle(
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w600,
                           color: Colors.white))
                 ],
@@ -116,24 +117,24 @@ class ShowSearchDataBody extends StatelessWidget {
                           '${weatherModel.forecast?.forecastday?[0].hour?[5].tempC}°',
                       time:
                           '${weatherModel.forecast?.forecastday?[0].hour?[5].time}'),
-                  const SizedBox(
-                    width: 20,
+                   SizedBox(
+                    width: 20.w,
                   ),
                   HourWeather(
                       tampC:
                           '${weatherModel.forecast?.forecastday?[0].hour?[10].tempC}°',
                       time:
                           '${weatherModel.forecast?.forecastday?[0].hour?[10].time}'),
-                  const SizedBox(
-                    width: 20,
+                   SizedBox(
+                    width: 20.w,
                   ),
                   HourWeather(
                       tampC:
                           '${weatherModel.forecast?.forecastday?[0].hour?[15].tempC}°',
                       time:
                           '${weatherModel.forecast?.forecastday?[0].hour?[15].time}'),
-                  const SizedBox(
-                    width: 20,
+                   SizedBox(
+                    width: 20.w,
                   ),
                   HourWeather(
                       tampC:

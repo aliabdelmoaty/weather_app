@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../assets.dart';
 import 'custom_image.dart';
@@ -20,20 +21,20 @@ class HourWeather extends StatelessWidget {
       children: [
         Text(
           tampC,
-          style: const TextStyle(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
+          style:  TextStyle(
+              fontSize: 20.sp, fontWeight: FontWeight.w500, color: Colors.white),
         ),
-        const SizedBox(
-            height: 65,
-            width: 60,
-            child: CustomImage(assetImage: Assets.weatherSplash, height: 40)),
-        const SizedBox(
-          height: 5,
+         SizedBox(
+            height: 65.h,
+            width: 60.w,
+            child: CustomImage(assetImage: Assets.weatherSplash, height: 40.h)),
+         SizedBox(
+          height: 5.h,
         ),
         Text(
           time.substring(16 - 5),
-          style: const TextStyle(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
+          style:  TextStyle(
+              fontSize: 20.sp, fontWeight: FontWeight.w500, color: Colors.white),
         )
       ],
     );
